@@ -1,5 +1,11 @@
-import { getDatabase, ref, onValue } from "firebase/database";
+import { getDatabase, ref, onValue, CSSProperties } from "firebase/database";
 import { useEffect, useState } from "react";
+import BarLoader from "react-spinners/BarLoader";
+
+const override: CSSProperties = {
+  display: "block",
+  margin: "0 auto",
+};
 
 const About = () => {
   const [about, setAbout] = useState({});
@@ -19,9 +25,8 @@ const About = () => {
   return (
     <article className="about__me">
       <h3 className="title">About Me</h3>
-      {!loading && (
-      <p>{about.title}</p>
-      )}
+      {!loading && <p>{about.title}</p>}
+      {loading && <BarLoader cssOverride={override} size={50} />}
     </article>
   );
 };

@@ -1,6 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, CSSProperties } from "react";
 import { getDatabase, ref, onValue } from "firebase/database";
+import FadeLoader from "react-spinners/FadeLoader";
 
+const override: CSSProperties = {
+  display: "block",
+  margin: "0 auto",
+};
 const Figure = () => {
   const [image, setImage] = useState({});
   const [loading, setLoading] = useState(false);
@@ -24,6 +29,7 @@ const Figure = () => {
           alt="Image from Firebase"
         />
       )}
+      {loading && <FadeLoader cssOverride={override} size={50} />}
     </figure>
   );
 };
